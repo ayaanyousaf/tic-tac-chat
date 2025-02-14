@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Hide any overflow to prevent scrollbars */
+    background: url('../images/bg.jpeg') repeat-x; /* Cloud background */
+    background-size: cover; /* Adjust as necessary */
+    animation: moveClouds 30s linear infinite; /* Cloud animation */
+}
+
+#board {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    background: none;
+    position: relative; /* Add this line to make z-index work */
+    z-index: 1; /* Adjust the z-index to be above the canvas */
+}
+
+#game-header {
+    z-index: 1; /* Higher than the canvas */
+    position: relative; /* or 'absolute' based on layout needs */
+    background: none;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#game-header h1 {
+    font-family: 'Press Start 2P', cursive; /* This is just an example, you can choose any font */
+    color: #e19b3e; /* White for better contrast */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1em; /* Space below the heading */
+    text-align: center;
+    font-size: 3em; /* Large text for the heading */
+}
+
+@media (max-width: 600px) {
+    #game-header h1 {
+        font-size: 2em; /* Smaller text for smaller screens */
+    }
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10vh; /* Adjusted padding to decrease the gap */
+    padding-bottom: 30px;
+    background: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1; /* Above the clouds container */
+    position: relative; /* This is important for z-index to take effect */
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border: 1px solid #6883b2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: background-color 0.3s, transform 0.3s; /* Added background-color transition */
+}
+
+.cell:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+/* X and O Styling */
+.x-marker {
+    color: #9b59b6; /* Lighter shade of purple */
+    transition: none; /* Fade in effect */
+    opacity: 1; /* Start with transparent X */
+}
+
+.o-marker {
+    color: #48c9b0; /* Lighter shade of teal */
+    transition: none; /* Fade in effect */
+    opacity: 1; /* Start with transparent O */
+}
+
+.cell::before {
+    content: ''; /* This is necessary for the pseudo-element to be generated */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent; /* Make sure it doesn't block the view of the cell's content */
+    z-index: 2; /* Above the cell content but below the text */
+}
+
+.cell-content {
+    position: relative;
+    z-index: 3; /* Ensures that the text (X or O) is above the pseudo-element */
+}
+
+.cell:hover {
+    background-color: #e3e3e3; /* Light grey background on hover */
+    transform: scale(1.05);
+}
+
+.cell:active {
+    transform: scale(0.95);
+}
+
+.winning-cell {
+    background-color: lightgreen; /* Winning cells background */
+    animation: pulse 1s infinite;
+}
+
+/* Buttons and Interactivity */
+#reset-game {
+    background-color: #9b59b6; /* Purple for the button */
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+    width: auto;
+    padding: 8px 20px;
+    margin-bottom: 10px;
+    position: relative; /* Add this line to make z-index work */
+    z-index: 3; /* Adjust the z-index to be above the canvas */
+}
+
+#reset-game:hover {
+    background-color: #8e44ad;
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Keyframes for the highlightWin animation */
+@keyframes highlightWin {
+    from { background-color: rgba(255, 255, 255, 0.8); }
+    to { background-color: #f1c40f; } /* Use gold to highlight winning cells */
+}
+
+/* Responsive design adjustments */
+@media (max-width: 600px) {
+    .cell {
+        width: 80px;
+        height: 80px;
+        font-size: 1.5em;
+    }
+    #board {
+        gap: 5px;
+    }
+}
+
+canvas {
+    position: fixed; /* Fixed position to cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: none; /* Removed background to let the cloud animation show through */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    margin-top: 15px; /* Space above the reset button */
+}
+
+@keyframes pulse {
+    0%, 100% { background-color: lightgreen; }
+    50% { background-color: yellow; }
+}
+
+.winning-cell {
+    animation: pulse 1s infinite;
+}
+
+#game-settings, #game-mode {
+    position: relative;
+    z-index: 3; /* Make sure this is above the canvas z-index */
+    margin: 10px;
+    padding: 5px;
+}
+
+#game-mode label, #game-settings label {
+    margin-right: 10px;
+}
+
+select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f8f8f8;
+}
+
+/* Style for when a select element is focused */
+select:focus {
+    outline: none;
+    border-color: #8e44ad;
+    box-shadow: 0 0 5px rgba(142, 68, 173, 0.5);
+}
+
+/* Add some custom styling for options if needed */
+option {
+    padding: 5px;
+}
+
+/* Select to match any game theme colors */
+select {
+    background-color: white;
+    color: #333;
+}
+
+.draw-cell {
+    animation: shake 0.5s;
+    background-color: lightblue;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+#game-status {
+    height: 40px;
+    font-family: 'Press Start 2P', cursive;
+    color: #e19b3e;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 10px; /* Spacing between the game board and the status message */
+    margin-bottom: 20px;
+    padding: 10px;
+    display: none; /* Initially hidden */
+    width: 100%; /* Take the full width of the container */
+    position: relative; /* Add this line to make z-index work */
+    z-index: 3; /* Adjust the z-index to be above the canvas */
+}
+
+/* Dropdown menu styling */
+select {
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #9b59b6; /* Purple border */
+    background-color: #fff;
+    color: #333; /* Text color */
+    font-size: 1rem;
+    font-family: 'Press Start 2P', cursive; /* Use custom font */
+    transition: border-color 0.3s;
+}
+
+/* Style for when a select element is focused */
+select:focus {
+    outline: none;
+    border-color: #8e44ad; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(142, 68, 173, 0.5);
+}
+
+/* Label styling */
+label {
+    font-family: 'Press Start 2P', cursive; /* Use custom font */
+    color: #e19b3e; /* Label text color */
+    margin-right: 10px; /* Spacing between label and dropdown menu */
+    font-size: 1rem; /* Label font size */
+}
+
+@keyframes moveClouds {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 0; } /* This value might need to be adjusted based on the size of your background image */
+}
+
+#clouds-container {
+    position: fixed;  /* Use fixed to cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100vw;    /* Viewport width */
+    height: 100vh;   /* Viewport height */
+    z-index: -1;     /* Behind all other content */
+    background: url('../images/bg.jpeg') repeat-x; /* Replace with your image path */
+    background-size: cover; /* Adjust as necessary */
+    animation: moveClouds 30s linear infinite; /* Adjust timing as necessary */
+}

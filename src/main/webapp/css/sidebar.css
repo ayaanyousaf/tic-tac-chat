@@ -1,0 +1,213 @@
+/* Basic reset for the hamburger menu and sidebar */
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic,700,700italic);
+#hamburger-menu,
+#sidebar {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for the hamburger menu */
+#hamburger-menu {
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px; /* Adjusted so it's visible when sidebar opens */
+    z-index: 2001; /* Higher than the sidebar's z-index */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+}
+
+#sidebar-close {
+    display: none;
+}
+
+/* Adjust the position of the hamburger menu when the sidebar is open */
+.sidebar.open + #hamburger-menu {
+    right: 270px; /* Adjust the value as needed, should be the width of the sidebar plus original right spacing */
+    z-index: 2001; /* Keep it above the sidebar */
+}
+#hamburger-menu .bar {
+    height: 3px;
+    width: 100%;
+    background-color: #333;
+    border-radius: 10px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Transforming the bars into an 'X' when sidebar is open */
+#hamburger-menu.open .top {
+    transform: translateY(8px) rotate(45deg);
+}
+
+#hamburger-menu.open .middle {
+    opacity: 0;
+}
+
+#hamburger-menu.open .bottom {
+    transition: transform 0.3s ease 0.1s, opacity 0.3s ease;
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Styles for the sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0; /* Set this to 0px to start with the sidebar visible */
+    width: 250px; /* Adjust width as needed */
+    height: 100%;
+    background: #8ba4d7; /* Change to match your design */
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out; /* Adjust the timing here for speed */
+    transform: translateX(100%); /* Initially off-screen */
+    z-index: 2000; /* Make sure this is above other elements */
+    font-family: 'Arimo', sans-serif;
+}
+
+.sidebar.open {
+    transform: translateX(0%); /* Bring sidebar onto screen */
+}
+
+.sidebar-menu {
+    list-style: none;
+    padding: 20px;
+}
+
+/* Sidebar Menu Links */
+.sidebar-menu li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+    font-family: 'Arimo', sans-serif;
+    position: relative;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+/* Hover Underline Effect */
+.sidebar-menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #333; /* Underline color */
+    visibility: hidden;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Sidebar menu link hover effect for both light and dark modes */
+.sidebar-menu li a:hover,
+.sidebar-menu li a:focus,
+body.dark-mode .sidebar-menu li a:hover,
+body.dark-mode .sidebar-menu li a:focus {
+    background-color: #e9ecef; /* Light grey background on hover for light mode */
+    color: #6883b2; /* Slightly lighter text color on hover for both modes */
+}
+
+.sidebar-menu li a:hover::after,
+.sidebar-menu li a:focus::after {
+    visibility: visible;
+    width: 100%;
+}
+
+/* Dark mode adjustments for the sidebar */
+body.dark-mode .sidebar {
+    background: #2c3e50; /* Darker shade for dark mode */
+    color: #ecf0f1; /* Lighter text color for better readability */
+}
+
+body.dark-mode .sidebar-menu li a {
+    color: #ecf0f1; /* Light text color for links */
+}
+
+body.dark-mode .sidebar-menu li:hover {
+    background-color: #34495e; /* Darker grey background on hover */
+}
+
+
+/* Optional: Add a transition effect to the sidebar background for smooth switching */
+body.dark-mode .sidebar {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode button styles */
+.sidebar-menu .dark-mode-button {
+    display: block;
+    padding: 10px;
+    color: #333; /* Your preferred text color */
+    text-decoration: none;
+    position: relative;
+    font-family: 'Arimo', sans-serif;
+}
+
+/* Dark mode button hover effect */
+.sidebar-menu .dark-mode-button:hover,
+.sidebar-menu .dark-mode-button:focus {
+    background-color: #e9ecef; /* Light grey background on hover */
+    text-decoration: none; /* No underline */
+    color: #6883b2; /* Slightly lighter text color on hover */
+}
+
+/* Dark mode button underline effect */
+.sidebar-menu .dark-mode-button::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #333; /* Your preferred underline color */
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+/* This will make the underline appear and fill in from left to right for the dark mode button */
+.sidebar-menu .dark-mode-button:hover::after,
+.sidebar-menu .dark-mode-button:focus::after {
+    visibility: visible;
+    width: 100%;
+}
+/* Styles for the hamburger menu in dark mode */
+body.dark-mode #hamburger-menu .bar {
+    background-color: #f1f1f1; /* Pearl white color for the hamburger menu bars in dark mode */
+}
+
+/* Dark mode adjustments for the sidebar menu links */
+body.dark-mode .sidebar-menu li a {
+    color: #ecf0f1; /* Light text color for links */
+    position: relative;
+    transition: color 0.3s, background-color 0.3s; /* Add transition for background color */
+}
+
+/* Dark mode sidebar menu link hover effect */
+body.dark-mode .sidebar-menu li a:hover,
+body.dark-mode .sidebar-menu li a:focus {
+    background-color: #34495e; /* Darker grey background on hover */
+    color: #95a5a6; /* Grey text color on hover */
+}
+
+/* Dark mode sidebar menu link underline effect */
+body.dark-mode .sidebar-menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ecf0f1; /* Light underline color for dark mode for better visibility */
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+/* This will make the underline appear and fill in from left to right for both li and a */
+body.dark-mode .sidebar-menu li:hover::after,
+body.dark-mode .sidebar-menu li a:hover::after,
+body.dark-mode .sidebar-menu li:focus::after,
+body.dark-mode .sidebar-menu li a:focus::after {
+    visibility: visible;
+    width: 100%;
+}

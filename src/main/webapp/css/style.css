@@ -1,0 +1,331 @@
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic,700,700italic);
+/* Reset some basic elements */
+html, body, div, span, applet, object, iframe,
+h2, h3, ul, li, form, input, button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+.instruction-text {
+    font-size: 1.2rem; /* Adjust the size as needed */
+    color: #333; /* A darker shade for better readability */
+    text-align: center; /* Center the text */
+    margin: 20px 0; /* Add some space above and below the text */
+    padding: 10px;
+    background-color: #f8f8f8; /* A light background to make it stand out */
+    border: 1px solid #e0e0e0; /* A subtle border */
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* A light shadow for depth */
+    font-family: 'Arimo', sans-serif;
+    font-style: italic; /* Italicize to indicate instructions */
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1.6;
+    background: #f4f7f6; /* Light gray background for less strain on the eyes */
+    color: #5d5d5d; /* Soft black for text */
+    font-family: 'Arimo', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.chat-container {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+#chat-room {
+    flex: 1;
+    overflow-y: auto; /* Enable scrolling for the chat room if needed */
+    padding: 20px;
+}
+
+.menu {
+    width: 300px;
+    background: #f7f7f7;
+    border-right: 1px solid #ddd;
+    overflow-y: auto; /* Enable scrolling for the menu if needed */
+}
+
+.search-bar {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.search-bar input[type="text"] {
+    flex-grow: 1;
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.search-bar button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
+#room-list {
+    list-style-type: none;
+}
+
+#room-list li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+#room-list li:last-child {
+    border-bottom: none;
+}
+
+#chat-room {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+#room-title {
+    margin-bottom: 20px;
+}
+
+#chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 20px; /* Allows space for scrollbar */
+}
+
+.message {
+    background: #e5e5ea;
+    padding: 10px 20px;
+    border-radius: 20px;
+    max-width: 60%;
+    margin-bottom: 15px; /* Consistent spacing */
+    align-self: flex-start; /* Align received messages to the left */
+}
+
+.from-me {
+    background: #0078ff;
+    color: white;
+    border-radius: 16px 16px 16px 0; /* Adjust border-radius to maintain the speech bubble shape */
+    align-self: flex-end; /* Align sent messages to the right */
+    margin-left: auto;
+    margin-right: 10px; /* Add a margin to separate sent messages from the edge of the container */
+}
+
+#chat-input {
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px 20px;
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+#send-message {
+    background: #0078ff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Extra styles for responsiveness and aesthetics */
+@media (max-width: 768px) {
+    .chat-container {
+        flex-direction: column;
+        padding: 15px; /* Slightly less padding on smaller screens */
+    }
+
+    .menu {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    #chat-room {
+        width: 100%;
+        height: auto;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 50px; /* Giving extra space at the bottom */
+    }
+}
+
+/* Additional global styles */
+ul {
+    list-style-type: none;
+}
+
+h2 {
+    color: #333;
+    font-size: 24px;
+    font-weight: normal; /* Avoid too bold titles */
+    margin-bottom: 20px; /* Give space below the title */
+}
+
+input[type="text"],
+button {
+    padding: 10px 15px; /* Uniform padding */
+    margin: 10px 0; /* Consistent margin */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Arimo', sans-serif; /* Consistent font usage */
+}
+
+input[type="text"] {
+    width: 100%; /* Full width for inputs */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+button {
+    background-color: #7289DA; /* Same color as .from-me in dark mode */
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    font-weight: bold; /* Make button text slightly bolder */
+}
+
+button:hover {
+    background-color: #7289DA; /* A slightly darker blue on hover */
+}
+
+/* Custom scrollbars for Webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    display: none; /* Hide the scroll bar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px; /* Rounded corners for scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.create-room-btn {
+    text-align: center; /* Center text in buttons */
+    display: block; /* Ensures the button uses the full available width */
+    margin: 20px auto;
+    background-color: #0078ff; /* Button background color */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: calc(100% - 40px); /* Full width minus padding */
+    padding: 15px; /* Larger padding for a tap-friendly design */
+    font-size: 18px; /* Larger font size for readability */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+.about-us-btn {
+    text-align: center; /* Center text in buttons */
+    display: block; /* Ensures the button uses the full available width */
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #0078ff; /* Button background color */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.create-room-btn:hover,
+.about-us-btn:hover {
+    background-color: #005ecb; /* A slightly darker blue on hover */
+}
+
+.timestamp {
+    font-size: 0.75em;
+    text-align: right;
+    color: #666;
+    padding-top: 5px; /* Or adjust as needed for your design */
+    margin-top: 5px; /* Space between the message and the timestamp */
+}
+
+.from-me .timestamp {
+    color: rgba(255, 255, 255, 0.75); /* Lighter color for visibility on blue background */
+}
+
+.sender {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background: #121212; /* Darker background for dark mode */
+    color: #e0e0e0; /* Lighter text for dark mode */
+    font-family: 'Arimo', sans-serif;
+}
+
+.dark-mode .chat-container,
+.dark-mode .menu {
+    background: #2C2F33; /* Dark mode backgrounds for containers */
+    color: #e0e0e0;
+}
+
+.dark-mode .message {
+    background: #23272A; /* Dark mode background for messages */
+}
+
+.dark-mode .from-me, .dark-mode.create-room-btn {
+    background: #7289DA; /* Different color for own messages to stand out in dark mode */
+}
+/* Dark mode button color */
+#send-message,
+.create-room-btn {
+    background-color: #7289DA; /* Same color as .from-me in dark mode */
+}
+
+/* Room title color in light mode */
+body.dark-mode #room-title {
+    color: #e0e0e0;
+}
+.search-button:hover {
+    background-color: #7289DA;
+    /* Add any other hover styles if wanted here for the search icon- */
+}
+
+.mood {
+    font-size: 1.2em; /* Adjust the size of the mood display */
+    margin-right: 5px; /* Add some space between the mood and the message */
+    font-family: 'Arimo', sans-serif;
+    color: #565656;
+}
+
+.dark-mode .mood {
+    font-size: 1.2em; /* Adjust the size of the mood display */
+    margin-right: 5px; /* Add some space between the mood and the message */
+    font-family: 'Arimo', sans-serif;
+    color: #e0e0e0;
+}
+/* Room title color in light mode */
+body.dark-mode #room-title {
+    color: #e0e0e0;
+}
+.search-button:hover .refresh-button:hover {
+    background-color: #7289DA;
+    /* Add any other hover styles if wanted here for the search icon- */
+}
+.refresh-button{
+    color: #e0e0e0;
+}

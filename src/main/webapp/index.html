@@ -1,0 +1,87 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <title>Chat Server</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <meta name="theme-color" content="#fafafa">
+</head>
+<body>
+<!-- Hamburger menu icon -->
+<div id="hamburger-menu" class="hamburger-menu">
+  <div class="bar top"></div>
+  <div class="bar middle"></div>
+  <div class="bar bottom"></div>
+</div>
+<!-- New sidebar HTML -->
+<aside id="sidebar" class="sidebar">
+  <button id="sidebar-close" class="sidebar-close"></button>
+  <ul class="sidebar-menu">
+    <li><a href="about.html">ABOUT US</a></li>
+    <li><a href="index.html">CHAT PAGE</a></li>
+    <li><a href="tictactoe.html">TIC TAC TOE </a></li>
+    <li><a href="#" id="dark-mode-toggle" class="dark-mode-button">DARK MODE ;)</a></li>
+  </ul>
+</aside>
+
+<!-- Page content -->
+<div id="page-wrapper">
+  <div class="chat-container">
+    <!-- Your existing menu -->
+    <aside class="menu">
+      <div class="search-bar">
+        <input type="text" placeholder="Search" />
+        <button class="search-button">🔍</button>
+        <div class="refresh-room">
+          <button class="refresh-button">🔄</button>
+        </div>
+      </div>
+      <p class="instruction-text">Click on a created/pre-existing room to join :)</p>
+      <ul id="room-list">
+        <!-- Chat rooms with avatars will be listed here -->
+      </ul>
+      <!-- Adding the "Create and Join New Room" button here -->
+      <button id="create-room" class="create-room-btn">Create a Room</button>
+    </aside>
+
+    <div id="chat-room">
+      <h2 id="room-title">You are chatting in room: <span id="room-id"></span></h2>
+      <div id="chat-messages"></div>
+      <div class="message-input-container">
+          <label for="mood-select">Your Mood:</label>
+          <select id="mood-select">
+            <option value="happy">😁 happy</option>
+            <option value="sad">😔 sad</option>
+            <option value="cooked">🥶 cooked</option>
+            <option value="annoyed">😒 pissed off</option>
+            <option value="busy">❌ busy</option>
+            <option value="angry af">🤬 mad maxxx </option>
+            <option value="sick">🤒 sick</option>
+            <option value="cheers">🍾 like celebrating</option>
+            <option value="working out">🏋️ like working Out</option>
+            <option value="working">💼 like  studying/working </option>
+            <option value="hungry">🍕 hungry</option>
+            <!-- Add more moods as you like -->
+          </select>
+          <label for="chat-input"></label>
+          <input type="text" id="chat-input" placeholder="Type your message here...">
+          <button id="send-message">Send</button>
+          </div>
+        </div>
+    </div>
+  </div>
+<script src="js/vendor/modernizr-3.11.2.min.js"></script>
+<script src="js/main.js"></script>
+<script src="js/sidebar.js"></script>
+<script>
+  window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+  ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'anonymizeIp', true); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async></script>
+</body>
+</html>

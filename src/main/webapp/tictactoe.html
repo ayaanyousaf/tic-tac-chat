@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/tictactoe.css">
+    <!-- Ensure sidebar css is included -->
+    <link rel="stylesheet" href="css/sidebar.css">
+</head>
+<body>
+<!-- Hamburger menu icon -->
+<div id="hamburger-menu" class="hamburger-menu">
+    <div class="bar top"></div>
+    <div class="bar middle"></div>
+    <div class="bar bottom"></div>
+</div>
+<!-- New sidebar HTML -->
+<aside id="sidebar" class="sidebar">
+    <button id="sidebar-close" class="sidebar-close"></button>
+    <ul class="sidebar-menu">
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="index.html">CHAT PAGE</a></li>
+        <li><a href="tictactoe.html">TIC TAC TOE </a></li>
+        <li><a href="#" id="dark-mode-toggle" class="dark-mode-button">DARK MODE ;)</a></li>
+    </ul>
+</aside>
+
+<!-- Page content -->
+<div id="game-settings">
+    <!-- Ensure this div is outside and above the game-container in the DOM -->
+    <label for="player-x-symbol">Player X Symbol:</label>
+    <select id="player-x-symbol">
+        <option value="X">X</option>
+        <option value="❌">❌</option>
+        <option value="🩵">🩵</option>
+        <option value="🐶">🐶</option>
+        <option value="✨">✨</option>
+        <!-- Add more options as needed -->
+    </select>
+
+    <label for="player-o-symbol">Player O Symbol:</label>
+    <select id="player-o-symbol">
+        <option value="O">O</option>
+        <option value="⭕">⭕</option>
+        <option value="🩷">🩷</option>
+        <option value="🐱">🐱</option>
+        <option value="💫">💫</option>
+        <!-- Add more options as needed -->
+    </select>
+</div>
+<div id="game-mode">
+    <label for="mode-select">Choose Game Mode:</label>
+    <select id="mode-select">
+        <option value="two-player">Two Player</option>
+        <option value="vs-ai">Vs AI</option>
+    </select>
+</div>
+<div id="game-header">
+    <h1>Tic Tac Toe</h1>
+</div>
+<div id="game-container">
+    <!-- Canvas will be appended here by p5.js -->
+    <div id="board"></div>
+    <button id="reset-game">Reset Game</button>
+
+    <!-- Add this below your game board and inside the game container -->
+    <div id="game-status" class="game-status">
+        <p id="winner-message"></p>
+    </div>
+</div>
+<audio id="moveSound" src="sound/move.wav"></audio>
+<audio id="winSound" src="sound/win.wav"></audio>
+<script src="js/tictactoe.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+<script src="js/sketch.js"></script>
+<script src="js/sidebar.js"></script>
+</body>
+</html>
