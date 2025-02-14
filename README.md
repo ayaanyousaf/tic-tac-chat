@@ -1,4 +1,4 @@
-# Final Project - Chat Room with Tic Tac Toe 
+# TicTacChat
 
 ## Contributors
 - Freza Majithia
@@ -7,7 +7,7 @@
 - Mark Chaitra
 
 ## Project Overview
-TicTacToe is a classic two-player game played on a 3x3 grid. Players take turns marking a cell on the grid with their respective symbols ('X' and 'O'). The player who successfully aligns three of their symbols horizontally, vertically, or diagonally wins the game. 
+TicTacChat is a platform that allows users to chat with multiple users simultaneously and play games of Tic Tac Toe. Tic Tac Toe is a classic two-player game played on a 3x3 grid. Players take turns marking a cell on the grid with their respective symbols ('X' and 'O'). The player who successfully aligns three of their symbols horizontally, vertically, or diagonally wins the game. 
 
 ## Features 
 
@@ -40,9 +40,3 @@ TicTacToe is a classic two-player game played on a 3x3 grid. Players take turns 
 
 ## Resources
 - [Google Fonts](https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap)
-
-## Contribution Breakdown
-- Freza Majithia: 25%
-- Anas Baig: 25%
-- Ayaan Yousaf: 25%
-- Mark Chaitra: 25%
